@@ -34,7 +34,7 @@ class App extends Component {
   };
 
   render() {
-    switch (LOADING) {
+    switch (this.state.state) {
       case INITIAL:
         return (
           <div className="body">
@@ -60,8 +60,8 @@ class App extends Component {
         return (
           <div className="center-vertically" onClick={this.handleReset}>
             <div className="image-carousel">
-              {this.state.cards.map(({ name, imageUrl }) => (
-                <img key={name} src={imageUrl} alt={name} />
+              {this.state.cards.map(({ name, imageUrl, text }) => (
+                <img key={name} src={imageUrl} alt={`${name}----${text}`} />
               ))}
             </div>
           </div>
