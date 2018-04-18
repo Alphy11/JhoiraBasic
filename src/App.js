@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import { card } from 'mtgsdk';
 import { RingLoader } from 'react-spinners';
+import { AwesomeButtonProgress } from 'react-awesome-button';
+import 'react-awesome-button/dist/themes/theme-blue.css';
 
 const INITIAL = 'initial';
 const LOADING = 'loading';
@@ -11,22 +13,23 @@ const SHOW_CARDS = 'show_cards';
 
 class App extends Component {
   state = { cards: [], state: 'initial' };
-  fetchCards(type) {
+  fetchCards(type, next) {
     card
       .where({ type, random: 'true', pageSize: 3, gameFormat: 'Vintage' })
       .then(cards => {
         this.setState({ cards, state: SHOW_CARDS });
+        next();
       })
       .catch(error => this.setState({ cards: [], error: JSON.stringify(error) }));
-    this.setState({ state: LOADING });
+    // this.setState({ state: LOADING });
   }
 
-  handleInstant = () => {
-    this.fetchCards('instant');
+  handleInstant = next => {
+    this.fetchCards('instant', next);
   };
 
-  handleSorccery = () => {
-    this.fetchCards('sorcery');
+  handleSorccery = next => {
+    this.fetchCards('sorcery', next);
   };
 
   handleReset = () => {
@@ -37,13 +40,23 @@ class App extends Component {
     switch (this.state.state) {
       case INITIAL:
         return (
-          <div className="body">
-            <button className="buttons" onClick={this.handleInstant}>
-              Instant
-            </button>
-            <button className="buttons" onClick={this.handleSorccery}>
-              Sorccery
-            </button>
+          <div className="body center-vertically">
+            <div className="center-horizontally">
+              <AwesomeButtonProgress
+                type="primary"
+                size="large"
+                action={(element, next) => this.handleInstant(next)}
+              >
+                Instant
+              </AwesomeButtonProgress>
+              <AwesomeButtonProgress
+                type="secondary"
+                size="large"
+                action={(element, next) => this.handleSorccery(next)}
+              >
+                Sorcery
+              </AwesomeButtonProgress>
+            </div>
           </div>
         );
       case LOADING:

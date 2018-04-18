@@ -26,13 +26,13 @@ img {
   height: 100%;
 }
 
-.buttons {
+/* .buttons {
   width: 50vw;
   height: 100vh;
   background: blue;
   font-size: 10vh;
   color: white;
-}
+} */
 
 .center-horizontally {
   display: flex;
