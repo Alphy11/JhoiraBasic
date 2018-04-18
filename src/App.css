@@ -1,0 +1,35 @@
+.image-carousel {
+  display: flex;
+  justify-content: space-between;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+}
+
+body,
+.body {
+  height: 100vh;
+  width: 100vw;
+}
+
+img {
+  max-width: 33%;
+  min-width: 216px;
+}
+
+.center-vertically {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  height: 100%;
+}
+
+.buttons {
+  width: 50vw;
+  height: 100vh;
+  background: blue;
+  font-size: 10vh;
+  color: white;
+}
