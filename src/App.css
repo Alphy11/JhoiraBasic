@@ -33,3 +33,9 @@ img {
   font-size: 10vh;
   color: white;
 }
+
+.center-horizontally {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}

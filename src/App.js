@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { card } from 'mtgsdk';
+import { RingLoader } from 'react-spinners';
 
 const INITIAL = 'initial';
 const LOADING = 'loading';
@@ -33,7 +34,7 @@ class App extends Component {
   };
 
   render() {
-    switch (this.state.state) {
+    switch (LOADING) {
       case INITIAL:
         return (
           <div className="body">
@@ -46,7 +47,13 @@ class App extends Component {
           </div>
         );
       case LOADING:
-        return <div>LOADING</div>;
+        return (
+          <div className="center-vertically">
+            <div className="center-horizontally">
+              <RingLoader loading={true} color="#4A90E2" />
+            </div>
+          </div>
+        );
       case ERROR:
         return <div>{this.state.error}</div>;
       case SHOW_CARDS:
